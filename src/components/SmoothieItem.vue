@@ -3,6 +3,9 @@
     <h1>Tere</h1>
     <div class="smoothie-grid">
       <div class="smoothie" v-for="smoothie in smoothies" :key="smoothie._id">
+        <button @click="deleteSmoothie(smoothie._id)">
+          delete
+        </button>
         <h2>{{ smoothie.name }}</h2>
         <div v-for="(ingredient, index) in smoothie.ingredients" :key="index">
           <p>
@@ -17,7 +20,7 @@
 <script>
 export default {
   name: "SmoothieItem",
-  props: ["smoothies"]
+  props: ["smoothies", "deleteSmoothie"]
 };
 </script>
 
