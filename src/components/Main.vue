@@ -1,11 +1,7 @@
 <template>
   <div>
     <AddSmoothie @add="addSmoothie" />
-    <SmoothieItem
-      :smoothies="smoothies"
-      :deleteSmoothie="deleteSmoothie"
-      :editSmoothie="editSmoothie"
-    />
+    <SmoothieItem :smoothies="smoothies" :deleteSmoothie="deleteSmoothie" />
   </div>
 </template>
 
@@ -31,15 +27,14 @@ export default {
       await axios.delete(`http://www.leheke.ninja/api/smoothies/${id}`);
     },
     async addSmoothie(payload) {
-      let params = {
+      let newSmoothie = {
         name: payload.smoothieName,
         ingredients: payload.smoothieIngredients
       };
-      let newSmoothie = await axios.post(
-        "http://www.leheke.ninja/api/smoothies",
-        params
-      );
-      this.smoothies.push(newSmoothie.data);
+      if (payload.smoothieName) {
+        this.smoothies.push(newSmoothie);
+        await axios.post("http://www.leheke.ninja/api/smoothies", newSmoothie);
+      }
     }
   },
   async created() {

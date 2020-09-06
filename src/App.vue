@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <h1>Smoothieful</h1>
       <!-- <router-link to="/">Home</router-link> -->
     </div>
     <router-view />
@@ -20,16 +21,6 @@ body {
   max-width: 960px;
   text-align: center;
   margin: 0px auto;
-}
-.smoothie {
-  background-color: var(--secondary);
-}
-.smoothie-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.smoothie-main-item {
-  text-align: center;
-  margin: 10px 30px;
+  font-family: "Kumbh Sans", sans-serif;
 }
 </style>
