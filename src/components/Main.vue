@@ -1,7 +1,11 @@
 <template>
   <div>
     <AddSmoothie @add="addSmoothie" />
-    <SmoothieItem :smoothies="smoothies" :deleteSmoothie="deleteSmoothie" />
+    <SmoothieItem
+      :smoothies="smoothies"
+      :deleteSmoothie="deleteSmoothie"
+      :editSmoothie="editSmoothie"
+    />
   </div>
 </template>
 
@@ -9,8 +13,7 @@
 import SmoothieItem from "./SmoothieItem";
 import AddSmoothie from "./AddSmoothie";
 import axios from "axios";
-// axios.defaults.headers.get["Content-Type"] = "application/json;charset=utf-8";
-// axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
+
 export default {
   name: "Main",
   components: {
@@ -30,7 +33,7 @@ export default {
     async addSmoothie(payload) {
       let params = {
         name: payload.smoothieName,
-        ingredients: []
+        ingredients: payload.smoothieIngredients
       };
       let newSmoothie = await axios.post(
         "http://www.leheke.ninja/api/smoothies",
