@@ -6,7 +6,7 @@
           <router-link class="link" to="/"><h1>Smoothieful</h1></router-link>
         </div>
         <div class="bottom-right">
-          <router-link class="link add" to="/addSmoothie">+</router-link>
+          <router-link class="link add" to="/add-smoothie">+</router-link>
         </div>
       </div>
     </nav>

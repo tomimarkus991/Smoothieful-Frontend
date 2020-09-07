@@ -10,6 +10,15 @@
             ></ion-icon>
           </div>
         </div>
+        <div class="editContainer">
+          <div class="bottomRight">
+            <router-link
+              class="link"
+              :to="{ name: 'EditSmoothie', params: { id: smoothie._id } }"
+              ><ion-icon name="pencil-outline"></ion-icon
+            ></router-link>
+          </div>
+        </div>
         <h2>{{ smoothie.name }}</h2>
         <div v-for="(ingredient, index) in smoothie.ingredients" :key="index">
           <p>
@@ -29,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.link {
+  text-decoration: none;
+  color: #e4e6eb;
+}
 .smoothie {
   background-color: var(--secondary);
   border-radius: 20px;
@@ -51,6 +64,16 @@ export default {
 .topRight {
   position: absolute;
   top: 6px;
+  right: 8px;
+  font-size: 30px;
+}
+.editContainer {
+  position: relative;
+  cursor: pointer;
+}
+.bottomRight {
+  position: absolute;
+  bottom: -100px;
   right: 8px;
   font-size: 30px;
 }

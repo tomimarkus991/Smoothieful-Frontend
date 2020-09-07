@@ -1,20 +1,17 @@
 <template>
   <div>
-    <!-- <AddSmoothie @add="addSmoothie" /> -->
     <SmoothieItem :smoothies="smoothies" :deleteSmoothie="deleteSmoothie" />
   </div>
 </template>
 
 <script>
 import SmoothieItem from "./SmoothieItem";
-// import AddSmoothie from "./AddSmoothie";
 import axios from "axios";
 
 export default {
   name: "Main",
   components: {
     SmoothieItem
-    // AddSmoothie
   },
   data() {
     return {
@@ -26,16 +23,6 @@ export default {
       this.smoothies = this.smoothies.filter(smoothie => smoothie._id !== id);
       await axios.delete(`http://www.leheke.ninja/api/smoothies/${id}`);
     }
-    // async addSmoothie(payload) {
-    //   let newSmoothie = {
-    //     name: payload.smoothieName,
-    //     ingredients: payload.smoothieIngredients
-    //   };
-    //   if (payload.smoothieName) {
-    //     this.smoothies.push(newSmoothie);
-    //     await axios.post("http://www.leheke.ninja/api/smoothies", newSmoothie);
-    //   }
-    // }
   },
   async created() {
     let res = await axios.get("http://www.leheke.ninja/api/smoothies");

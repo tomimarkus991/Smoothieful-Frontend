@@ -9,6 +9,13 @@
         placeholder="Name"
         required
       />
+      <input
+        class="add-smoothie-input"
+        type="text"
+        v-model="ingredient"
+        placeholder="Add an ingredient"
+        @keydown.tab.prevent="addIngredient"
+      />
       <div v-for="(ingredient, index) in smoothieIngredients" :key="index">
         <p>
           {{ index + 1 }}
@@ -19,13 +26,6 @@
           />
         </p>
       </div>
-      <input
-        class="add-smoothie-input"
-        type="text"
-        v-model="ingredient"
-        placeholder="Add an ingredient"
-        @keydown.tab.prevent="addIngredient"
-      />
       <!-- <div v-if="smoothieIngredients !== null">Ingredients:</div> -->
 
       <button class="add-smoothie-button">Add Smoothie</button>
