@@ -48,7 +48,9 @@ export default {
   methods: {
     async addSmoothie() {
       let newSmoothie = {
-        name: this.smoothieName,
+        name:
+          this.smoothieName.charAt(0).toUpperCase() +
+          this.smoothieName.slice(1, this.smoothieName.length),
         ingredients: this.smoothieIngredients
       };
       if (this.smoothieName) {

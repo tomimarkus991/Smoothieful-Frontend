@@ -10,20 +10,22 @@
             ></ion-icon>
           </div>
         </div>
+        <div>
+          <h2>{{ smoothie.name }}</h2>
+          <div v-for="(ingredient, index) in smoothie.ingredients" :key="index">
+            <p>
+              {{ ingredient }}
+            </p>
+          </div>
+        </div>
         <div class="editContainer">
           <div class="bottomRight">
             <router-link
               class="link"
               :to="{ name: 'EditSmoothie', params: { id: smoothie._id } }"
-              ><ion-icon name="pencil-outline"></ion-icon
-            ></router-link>
+              ><ion-icon name="pencil"></ion-icon>
+            </router-link>
           </div>
-        </div>
-        <h2>{{ smoothie.name }}</h2>
-        <div v-for="(ingredient, index) in smoothie.ingredients" :key="index">
-          <p>
-            {{ ingredient }}
-          </p>
         </div>
       </div>
     </div>
@@ -73,7 +75,10 @@ export default {
 }
 .bottomRight {
   position: absolute;
-  bottom: -100px;
+  background-color: #2d88ff;
+  padding: 6px 8px 0px 8px;
+  border-radius: 60px;
+  bottom: 4px;
   right: 8px;
   font-size: 30px;
 }

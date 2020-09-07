@@ -28,7 +28,9 @@ export default {
   methods: {
     async updateSmoothie() {
       let data = {
-        name: this.smoothieName,
+        name:
+          this.smoothieName.charAt(0).toUpperCase() +
+          this.smoothieName.slice(1, this.smoothieName.length),
         ingredients: this.smoothieIngredients
       };
       await axios.put(`http://www.leheke.ninja/api/smoothies/${this.id}`, data);

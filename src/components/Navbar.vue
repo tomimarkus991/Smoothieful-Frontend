@@ -28,8 +28,8 @@ export default {
   color: #e4e6eb;
 }
 .add {
-  padding: 20px;
-  border-radius: 10px;
+  padding: 17px 24px 17px 24px;
+  border-radius: 50px;
   background-color: #2d88ff;
 }
 .bottom-right {
@@ -38,7 +38,7 @@ export default {
   position: relative;
   float: right;
   font-size: 30px;
-  margin-right: 30px;
+  margin-right: 200px;
 }
 .home {
   margin-left: 10px;
