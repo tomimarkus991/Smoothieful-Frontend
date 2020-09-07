@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "../views/Home";
+import AddSmoothie from "../components/AddSmoothie";
 
 Vue.use(VueRouter);
 
@@ -9,11 +10,16 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/addSmoothie",
+    name: "AddSmoothie",
+    component: AddSmoothie
   }
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes
 });

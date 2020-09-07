@@ -1,51 +1,73 @@
 <template>
-  <div>
-    <form @submit="e => addSmoothie(e)">
+  <div class="size">
+    <form class="add-smoothie" @submit.prevent="addSmoothie">
+      <div v-if="error">{{ error }}</div>
       <input
         class="add-smoothie-input"
         type="text"
         v-model="smoothieName"
         placeholder="Name"
+        required
       />
+      <div v-for="(ingredient, index) in smoothieIngredients" :key="index">
+        <p>
+          {{ index + 1 }}
+          <input
+            class="add-smoothie-input"
+            type="text"
+            v-model="smoothieIngredients[index]"
+          />
+        </p>
+      </div>
+      <input
+        class="add-smoothie-input"
+        type="text"
+        v-model="ingredient"
+        placeholder="Add an ingredient"
+        @keydown.tab.prevent="addIngredient"
+      />
+      <!-- <div v-if="smoothieIngredients !== null">Ingredients:</div> -->
+
       <button class="add-smoothie-button">Add Smoothie</button>
     </form>
-    <input
-      class="add-smoothie-input"
-      type="text"
-      v-model="ingredient"
-      placeholder="Ingredient"
-    />
-    <button class="add-smoothie-button" @click="addIngredient">
-      Add Ingredient
-    </button>
-    <div v-for="(ingredient, index) in smoothieIngredients" :key="index">
-      <p>{{ ingredient }}</p>
-    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "AddSmoothie",
   data() {
     return {
       smoothieName: "",
       ingredient: "",
-      smoothieIngredients: []
+      smoothieIngredients: [],
+      error: null
     };
   },
   methods: {
-    addSmoothie(e) {
-      e.preventDefault();
-      this.$emit("add", {
-        smoothieName:
-          this.smoothieName.charAt(0).toUpperCase() +
-          this.smoothieName.slice(1, this.smoothieName.length),
-        smoothieIngredients: this.smoothieIngredients
-      });
-      this.smoothieIngredients = [];
-      this.smoothieName = "";
-      this.ingredient = "";
+    async addSmoothie() {
+      let newSmoothie = {
+        name: this.smoothieName,
+        ingredients: this.smoothieIngredients
+      };
+      if (this.smoothieName) {
+        this.smoothieIngredients = [];
+        this.smoothieName = "";
+        this.ingredient = "";
+        try {
+          await axios.post(
+            "http://www.leheke.ninja/api/smoothies",
+            newSmoothie
+          );
+          this.$router.push({ name: "Home" });
+        } catch (error) {
+          if (error.message === "Request failed with status code 500") {
+            error.message = "There cannot be two smoothies with the same name";
+            this.error = error.message;
+          }
+        }
+      }
     },
     addIngredient() {
       if (this.ingredient) {
@@ -57,6 +79,14 @@ export default {
 };
 </script>
 <style scoped>
+.size {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.add-smoothie {
+  display: grid;
+  grid-template-columns: repeat(1fr);
+}
 .add-smoothie-input {
   color: #e4e6eb;
   background-color: #242526;
@@ -67,7 +97,6 @@ export default {
   margin-bottom: 20px;
 }
 .add-smoothie-input:hover {
-  color: #e4e6eb;
   background-color: #333435;
   border: 3px solid #e4e6eb;
   font-size: 17px;
@@ -84,7 +113,6 @@ export default {
   cursor: pointer;
 }
 .add-smoothie-button:hover {
-  color: #e4e6eb;
   background-color: #333435;
   border: 3px solid #e4e6eb;
   scale: 1.1;

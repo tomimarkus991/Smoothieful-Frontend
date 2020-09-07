@@ -1,13 +1,23 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <h1>Smoothieful</h1>
-      <!-- <router-link to="/">Home</router-link> -->
+  <div>
+    <div>
+      <Navbar />
     </div>
-    <router-view />
+    <div class="app">
+      <router-view />
+    </div>
   </div>
 </template>
 
+<script>
+import Navbar from "./components/Navbar";
+export default {
+  name: "App",
+  components: {
+    Navbar
+  }
+};
+</script>
 <style>
 :root {
   --primary: #18191a;
@@ -18,9 +28,13 @@
 body {
   background-color: var(--primary);
   color: var(--textWhite);
+  font-family: "Kumbh Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.app {
   max-width: 960px;
   text-align: center;
   margin: 0px auto;
-  font-family: "Kumbh Sans", sans-serif;
 }
 </style>

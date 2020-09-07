@@ -32,12 +32,13 @@ export default {
 .smoothie {
   background-color: var(--secondary);
   border-radius: 20px;
-  margin-right: 20px;
-  margin-top: 20px;
+  margin: 10px;
 }
 .smoothie-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(200px, auto);
+  /* grid-template-columns: minmax(auto, 50%) 1fr 3em; */
 }
 .smoothie-main-item {
   text-align: center;
