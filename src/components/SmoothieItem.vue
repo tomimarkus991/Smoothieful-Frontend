@@ -3,11 +3,20 @@
     <div class="smoothie-grid">
       <div class="smoothie" v-for="smoothie in smoothies" :key="smoothie._id">
         <div class="deleteContainer">
-          <div class="topRight">
+          <div class="topLeft">
             <ion-icon
               @click="deleteSmoothie(smoothie._id)"
               name="trash-outline"
             ></ion-icon>
+          </div>
+        </div>
+        <div class="editContainer">
+          <div class="topRight">
+            <router-link
+              class="link"
+              :to="{ name: 'EditSmoothie', params: { id: smoothie._id } }"
+              ><ion-icon name="pencil"></ion-icon>
+            </router-link>
           </div>
         </div>
         <div>
@@ -16,15 +25,6 @@
             <p>
               {{ ingredient }}
             </p>
-          </div>
-        </div>
-        <div class="editContainer">
-          <div class="bottomRight">
-            <router-link
-              class="link"
-              :to="{ name: 'EditSmoothie', params: { id: smoothie._id } }"
-              ><ion-icon name="pencil"></ion-icon>
-            </router-link>
           </div>
         </div>
       </div>
@@ -67,23 +67,23 @@ export default {
   position: relative;
   cursor: pointer;
 }
+.editContainer {
+  position: relative;
+  cursor: pointer;
+}
 .topRight {
   position: absolute;
   top: 6px;
   right: 8px;
   font-size: 30px;
-}
-.editContainer {
-  position: relative;
-  cursor: pointer;
-}
-.bottomRight {
-  position: absolute;
   background-color: #2d88ff;
   padding: 6px 8px 0px 8px;
   border-radius: 60px;
-  bottom: 4px;
-  right: 8px;
+}
+.topLeft {
+  position: absolute;
+  top: 4px;
+  left: 8px;
   font-size: 30px;
 }
 @media screen and (max-width: 960px) {
