@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div v-if="smoothie" class="main">
     <div class="grid">
       <h2>Edit {{ smoothieName }} Smoothie</h2>
       <form @submit.prevent="updateSmoothie">
@@ -46,7 +46,7 @@ export default {
   name: "EditSmoothie",
   data() {
     return {
-      smoothie: {},
+      smoothie: null,
       smoothieName: "",
       id: "",
       smoothieIngredients: [],
