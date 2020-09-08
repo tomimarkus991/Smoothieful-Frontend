@@ -21,11 +21,15 @@ export default {
   methods: {
     async deleteSmoothie(id) {
       this.smoothies = this.smoothies.filter(smoothie => smoothie._id !== id);
-      await axios.delete(`http://www.leheke.ninja/api/smoothies/${id}`);
+      await axios.delete(
+        `https://murmuring-tundra-54140.herokuapp.com/api/smoothies/${id}`
+      );
     }
   },
   async created() {
-    let res = await axios.get("http://www.leheke.ninja/api/smoothies");
+    let res = await axios.get(
+      "https://murmuring-tundra-54140.herokuapp.com/api/smoothies"
+    );
     this.smoothies = res.data;
   }
 };

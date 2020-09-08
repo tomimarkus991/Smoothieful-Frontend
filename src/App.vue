@@ -33,8 +33,5 @@ body {
   padding: 0;
 }
 .app {
-  max-width: 960px;
-  text-align: center;
-  margin: 0px auto;
 }
 </style>

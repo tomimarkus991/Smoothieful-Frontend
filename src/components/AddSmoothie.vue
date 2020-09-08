@@ -13,7 +13,7 @@
         class="add-smoothie-input"
         type="text"
         v-model="ingredient"
-        placeholder="Add an ingredient"
+        placeholder="Add an ingredient (press tab to add):"
         @keydown.tab.prevent="addIngredient"
       />
       <div v-for="(ingredient, index) in smoothieIngredients" :key="index">
@@ -27,7 +27,6 @@
         </p>
       </div>
       <!-- <div v-if="smoothieIngredients !== null">Ingredients:</div> -->
-
       <button class="add-smoothie-button">Add Smoothie</button>
     </form>
   </div>
@@ -59,7 +58,7 @@ export default {
         this.ingredient = "";
         try {
           await axios.post(
-            "http://www.leheke.ninja/api/smoothies",
+            "https://murmuring-tundra-54140.herokuapp.com/api/smoothies",
             newSmoothie
           );
           this.$router.push({ name: "Home" });

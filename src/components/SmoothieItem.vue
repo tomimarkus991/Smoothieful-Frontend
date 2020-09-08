@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="smoothie-main">
     <div class="smoothie-grid">
       <div class="smoothie" v-for="smoothie in smoothies" :key="smoothie._id">
         <div class="deleteContainer">
@@ -40,6 +40,15 @@ export default {
 </script>
 
 <style scoped>
+.smoothie-main {
+  max-width: 920px;
+  text-align: center;
+  margin: 0 auto;
+}
+.smoothie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 .link {
   text-decoration: none;
   color: #e4e6eb;
@@ -47,13 +56,8 @@ export default {
 .smoothie {
   background-color: var(--secondary);
   border-radius: 20px;
-  margin: 10px;
-}
-.smoothie-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: minmax(200px, auto);
-  /* grid-template-columns: minmax(auto, 50%) 1fr 3em; */
+  margin: 10px 10px;
+  text-align: center;
 }
 .smoothie-main-item {
   text-align: center;
@@ -81,5 +85,27 @@ export default {
   bottom: 4px;
   right: 8px;
   font-size: 30px;
+}
+@media screen and (max-width: 960px) {
+  .smoothie-main {
+    max-width: 960px;
+  }
+  .smoothie-grid {
+    grid-template-columns: repeat(2, 2fr);
+  }
+}
+@media screen and (max-width: 660px) {
+  .smoothie {
+    min-width: 300px;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  .smoothie-main {
+    max-width: 660px;
+  }
+  .smoothie-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 </style>
