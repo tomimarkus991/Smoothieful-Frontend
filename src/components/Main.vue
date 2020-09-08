@@ -26,7 +26,7 @@ export default {
       );
     }
   },
-  async created() {
+  async beforeCreate() {
     let res = await axios.get(
       "https://murmuring-tundra-54140.herokuapp.com/api/smoothies"
     );
